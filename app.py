@@ -24,6 +24,19 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
+# # Specify the path to your image file
+# image_path = "algox_logo.png"
+
+# # Create two columns with the image placed in the center column
+# col1, col2, col3 = st.columns(3)
+
+# # Center the image by adjusting the width of the first and third columns
+# col1.write("")
+# col2.image(image_path, use_column_width=True)
+# col3.write("")
+
+
+
 st.markdown(
     "<h2 style='text-align: center; color: white;'>Bullet Momentum Strategy - Portfolio</h2>",
     unsafe_allow_html=True,
@@ -138,7 +151,7 @@ fig_cumpnl.update_layout(title=dict(text = 'Strategy Equity PNL Curve',font=dict
 
 # Show the plot
 st.plotly_chart(fig_cumpnl)
-
+st.write("")
 # Create a line plot of 'cum_pnl' with date as the x-axis
 fig_dd = go.Figure(data=go.Scatter(x=running_pnl_df.index, y=running_pnl_df['drawdown_pct'], mode='lines+markers'))
 
@@ -184,5 +197,36 @@ df_closed["sell_value"] = df_closed["exit_price"]*df_closed["qty"]
 df_closed["returns (%)"] = round((df_closed["pnl"]*100)/df_closed["buy_value"],2)
 df_closed = df_closed.set_index("trade_date")
 st.dataframe(df_closed)
+
+st.write("---")
+
+
+###########################################################################
+
+st.markdown(
+    "<h4 style='text-align: center; color: white;'> 🔎 Weekly top stocks in BMS Scanner</h4>",
+    unsafe_allow_html=True,
+)
+
+
+if st.button("Find Top Stocks"):
+    url = "https://583x42h4k6.execute-api.ap-south-1.amazonaws.com/bms/stocks"
+    payload = {}
+    headers = {}
+    response = requests.request("GET", url, headers=headers, data=payload)
+    stock_data = json.loads(response.text)
+
+    last_updated_date = list(stock_data.keys())[-1]
+
+    stock_data = stock_data[next(iter(stock_data))]
+
+    top_stock_df = pd.DataFrame(stock_data)
+
+    st.write("")
+    st.write(f"Last updated on {last_updated_date}")
+    st.write("")
+
+    st.dataframe(top_stock_df)
+
 
 st.write("---")
