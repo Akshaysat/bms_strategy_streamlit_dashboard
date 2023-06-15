@@ -90,7 +90,7 @@ running_pnl_df['drawdown_days'] = running_pnl_df['drawdown_start'].cumsum()
 running_pnl_df['drawdown_days'] = running_pnl_df.apply(lambda x: int(x['drawdown_days']) if x["drawdown"] < 0 else 0, axis = 1)
 
 #calculate strategy stats
-net_profit = running_pnl_df["cum_pnl"][-1]
+net_profit = round(running_pnl_df["cum_pnl"][-1],2)
 unrealized_pnl = round(net_profit - realized_pnl,2)
 num_days = (dt.datetime.today() - dt.datetime(2023,6,5)).days
 max_dd = running_pnl_df['drawdown_pct'].min()
