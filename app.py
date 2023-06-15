@@ -178,7 +178,7 @@ df_open = df_open[["trade_date","stock_symbol","entry_price","qty","running_pnl"
 df_open["buy_value"] = df_open["entry_price"]*df_open["qty"]
 df_open["running_pnl"] = df_open["running_pnl"].apply(lambda x: list(x.values())[-1])
 df_open["running_returns (%)"] = df_open.apply(lambda x: round((x["running_pnl"]*100)/(x["buy_value"]),2), axis = 1)
-df_open = df_open.set_index("trade_date")
+#df_open = df_open.set_index("trade_date")
 st.dataframe(df_open)
 
 st.write("---")
@@ -195,7 +195,7 @@ df_closed = df_closed[["trade_date","stock_symbol","entry_price","exit_price","e
 df_closed["buy_value"] = df_closed["entry_price"]*df_closed["qty"]
 df_closed["sell_value"] = df_closed["exit_price"]*df_closed["qty"]
 df_closed["returns (%)"] = round((df_closed["pnl"]*100)/df_closed["buy_value"],2)
-df_closed = df_closed.set_index("trade_date")
+#df_closed = df_closed.set_index("trade_date")
 st.dataframe(df_closed)
 
 st.write("---")
