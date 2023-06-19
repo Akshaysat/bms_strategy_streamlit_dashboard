@@ -232,7 +232,7 @@ if st.button("Find Top Stocks"):
 st.write("---")
 
 st.markdown(
-    "<h4 style='text-align: center; color: white;'>Do you want to automate this strategy? <br> Let's Connect :)</h6>",
+    "<h4 style='text-align: center; color: white;'>Do you want to automate this strategy? <br><br> Let's Connect :)</h6>",
     unsafe_allow_html=True,
 )
 st.write("")
