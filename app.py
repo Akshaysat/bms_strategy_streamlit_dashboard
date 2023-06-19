@@ -230,3 +230,11 @@ if st.button("Find Top Stocks"):
 
 
 st.write("---")
+
+st.markdown(
+    "<h4 style='text-align: center; color: white;'>Do you want to automate this strategy? Ping me on WhatsApp</h6>",
+    unsafe_allow_html=True,
+)
+st.write("")
+whatsapp_string = """<p align = "center"> <a href="https://api.whatsapp.com/send/?phone=918484819808&text=Hey%20there,%20I%20want%20to%20discuss%20about%20the%20automation%20of%20Bullet%20Momentum%20Strategy!"><img src="https://cps-pnl-charts.s3.ap-south-1.amazonaws.com/302524815_3448899778679909_2843186333341006023_n.png" /></a>"""
+st.markdown(whatsapp_string, unsafe_allow_html=True)
